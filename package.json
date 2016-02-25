@@ -40,7 +40,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "express": "^4.13.4",
+    "express": "^3.0.0",
     "gzippo": "^0.2.0"
   }
 }
