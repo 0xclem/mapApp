@@ -1,7 +1,5 @@
 <div class="wrapper">
   
-
-
 <div class="element">
 
   <div class="coordinates">
@@ -16,38 +14,37 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+      <tr ng-repeat="marker in markers">
+        <td>{{marker.center.lat}}</td>
+        <td>{{marker.center.lng}}</td>
+        <td>accuracy</td>
+        <td>time</td>
       </tr>
     </tbody>
   </table>
 
-
-
   </div>
 
-
+  <button class="btn-generate" ng-click="clearMarkers()" type="button">Refresh</button>
   <button class="btn-generate" type="button">Generate</button>
 
 </div>
 
-
-
-
 <div class="element right">
 
-  <ui-gmap-google-map 
-    center='map.center'
-    zoom='map.zoom'>
-  </ui-gmap-google-map>
+<div map-lazy-load="https://maps.google.com/maps/api/js" class="map-wrapper">
+  <ng-map
+  on-click="savePoint(this)">
 
+    <marker 
+      ng-repeat="marker in markers" 
+      position="{{marker.center.lat}}, {{marker.center.lng}}"
+      id="{{marker.index}}">
+
+
+  </ng-map>
 </div>
 
-
-
-
+</div>
 
 </div>

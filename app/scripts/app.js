@@ -16,7 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'uiGmapgoogle-maps'
+    'ngMap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -29,11 +29,3 @@ angular
         redirectTo: '/'
       });
   });
-
-  angular.module('mapAppApp').config(
-    ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
-        GoogleMapApiProviders.configure({
-            china: true
-        });
-    }]
-);
