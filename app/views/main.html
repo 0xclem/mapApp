@@ -17,16 +17,26 @@
       <tr ng-repeat="marker in markers">
         <td>{{marker.center.lat}}</td>
         <td>{{marker.center.lng}}</td>
-        <td>accuracy</td>
-        <td>time</td>
+        <td>{{marker.accuracy}}</td>
+        <td>{{marker.timestamp}}</td>
       </tr>
     </tbody>
   </table>
 
   </div>
 
+  <div style="margin-top: 50px;">
+    current accuracy: {{accuracy}}
+  </div>
+
   <button class="btn-generate" ng-click="clearMarkers()" type="button">Refresh</button>
-  <button class="btn-generate" type="button">Generate</button>
+  <button class="btn-generate" type="button" ng-click="generate()" ng-disabled="markers.length == 0">Generate</button>
+
+  <ul class="legend" ng-repeat="path in pathsName">
+    <li>
+    {{path.name}}: <span style="width: 20px; height: 5px; background-color: {{path.color}}"></span>
+    </li>
+  </ul>
 
 </div>
 
@@ -37,12 +47,36 @@
   on-click="savePoint(this)">
 
     <marker 
-      ng-repeat="marker in markers" 
-      position="{{marker.center.lat}}, {{marker.center.lng}}"
-      id="{{marker.index}}">
+    ng-repeat="marker in markers" 
+    position="{{marker.center.lat}}, {{marker.center.lng}}"
+    id="{{marker.index}}">
+
+    <shape
+    ng-repeat="circle in circles"
+    name="{{circle.name}}"
+    no-watcher="false"
+    stroke-color='{{circle.strokeColor}}'
+    stroke-opacity="{{circle.strokeOpacity}}"
+    stroke-weight="{{circle.strokeWeight}}"
+    fill-color="{{circle.fillColor}}"
+    fill-opacity="{{circle.fillOpacity}}"
+    center="[{{circle.center.lat}}, {{circle.center.lng}}]"
+    radius="{{circle.radius}}"
+    editable="false" >
+    </shape>
+
+    <shape name="polyline"
+      ng-repeat="polyline in polylines"
+      path="{{polyline.path}}"
+      geodesic="true"
+      stroke-color="{{polyline.color}}"
+      stroke-opacity="1.0"
+      stroke-weight="2">
+    </shape>
 
 
   </ng-map>
+
 </div>
 
 </div>

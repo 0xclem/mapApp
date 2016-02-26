@@ -36,4 +36,14 @@ html, body, .container{
   width: 100%;
 }
 
+.legend {
+  text-align: left;
+  font-weight: 400;
+  font-size: 20px;
+  list-style: round;
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
 
